@@ -31,6 +31,22 @@ glimpse(taxi)
 
 ## Question 1
 
+Is there there a relationship between the distance (in miles) someone travels in a taxi and if they tip or not?
+
+```{r}
+#| label: relationship-between-distance-and-tip
+ggplot(taxi, aes (x = distance, y = tip, fill = tip)) +
+         geom_boxplot(show.legend = FALSE) +
+  labs(
+    x = "Distance (miles)",
+    y = "Tip",
+    title = "Relationship between distance and tip"
+  )
+
+```
+
+More tips are given if the trip is longer.
+
 ## Question 2
 
 ## Your own question
