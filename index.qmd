@@ -36,17 +36,30 @@ Is there there a relationship between the distance (in miles) someone travels in
 ```{r}
 #| label: relationship-between-distance-and-tip
 ggplot(taxi, aes (x = distance, y = tip, fill = tip)) +
-         geom_boxplot(show.legend = FALSE) +
+  geom_boxplot(show.legend = FALSE) +
   labs(
     x = "Distance (miles)",
     y = "Tip",
     title = "Relationship between distance and tip"
   )
-
 ```
 
 More tips are given if the trip is longer.
 
 ## Question 2
+
+Do taxi passengers tend to tip more for the company Chicago Independents than the other companies?
+
+```{r}
+#| label: company-vs-tip
+taxi |>
+  select(tip, company) |> 
+  filter(company == "Chicago Independents" | company =="other") |>
+  group_by(tip) |>
+  mutate (tip_to_CI = if_else(company == "Chicago Independents", "TRUE", "FALSE")) |>
+  count(tip_to_CI)
+```
+
+No, Chicago Independents overall received less tip than other companies.
 
 ## Your own question
